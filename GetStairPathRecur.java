@@ -4,41 +4,46 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-     Scanner scn = new Scanner(System.in);
-     int n = scn.nextInt();
-     ArrayList<String> res = getStairPaths(n);
-     System.out.println(res);
-    
+         Scanner scn = new Scanner(System.in);
+         int n = scn.nextInt();
+         int m = scn.nextInt();
+         ArrayList<String> res = getMazePaths(1,1,n,m);
+         System.out.println(res);
     }
 
-    public static ArrayList<String> getStairPaths(int n) {
-         
-         if(n == 0){
-             ArrayList<String> response = new ArrayList<>();
-             response.add("");
-             return response;
-         }
-         if(n < 0){
-             ArrayList<String> response = new ArrayList<>();
-             return response;
-         }
-         
-         ArrayList<String> res1 = getStairPaths(n-1);
-         ArrayList<String> res2 = getStairPaths(n-2);
-         ArrayList<String> res3 = getStairPaths(n-3);
-         
-         ArrayList<String> res = new ArrayList<>();
-         
-         for(String val : res1){
-             res.add(1 + val);
-         }
-          for(String val : res2){
-             res.add(2 + val);
-         }
-          for(String val : res3){
-             res.add(3 + val);
-         }
-         return res;
+    // sr - source row
+    // sc - source column
+    // dr - destination row
+    // dc - destination column
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+        
+        
+        if(sr == dr && sc == dc){
+          ArrayList<String> ans = new ArrayList<>();
+          ans.add("");
+          return ans;
+        }
+      
+        
+        ArrayList<String> res1 = new ArrayList<>();
+        ArrayList<String> res2 = new ArrayList<>();
+        ArrayList<String> res = new ArrayList<>();
+
+        if(sr < dr){
+          res1 = getMazePaths(sr+1,sc,dr,dc);
+        }
+        if(sc < dc){
+            res2 = getMazePaths(sr,sc+1,dr,dc);
+        }
+        
+        
+        for(String val : res2){
+            res.add("h" + val);
+        }
+        for(String val : res1){
+            res.add("v" + val);
+        }
+        return res;
     }
 
 }

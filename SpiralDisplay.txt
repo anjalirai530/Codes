@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn = new Scanner(System.in);
+        int m = scn.nextInt();
+        int n = scn.nextInt();
+        int arr[][] = new int [m][n];
+        for(int i = 0 ; i < arr.length;i++){
+            for(int j = 0 ;j <arr[0].length ;j++){
+                arr[i][j] = scn.nextInt();
+            }
+        }
+        int sr = 0;
+        int er = arr.length-1;
+        int sc = 0;
+        int ec = arr[0].length-1;
+        int count = 0;
+        int te = m*n;
+        
+        while(count < te){
+            for(int i = sr ; i <= er && count < te ;i++){
+                System.out.println(arr[i][sc]);
+                count++;
+            }
+            sc++;
+            
+            for(int i = sc ; i <= ec && count < te ;i++){
+                System.out.println(arr[er][i]);
+                count++;
+            }
+            er--;
+            
+             for(int i = er ; i >= sr && count < te ;i--){
+                System.out.println(arr[i][ec]);
+                count++;
+            }
+            ec--;
+              for(int i = ec ; i >=sc && count < te ;i--){
+                System.out.println(arr[sr][i]);
+                count++;
+            }
+            sr++;
+        }
+    }
+
+}

@@ -5,15 +5,14 @@ public class Main {
 
 	public static String toggleCase(String str){
 		//write your code here
-		StringBuilder sb = new StringBuilder(str);
-		for(int i=0;i<sb.length();i++){
-		    char ch = str.charAt(i);
-		    if(ch >='a' && ch <='z'){
-		        char upc = (char)('A'+ch-'a');
-		        sb.setCharAt(i,upc);
-		    }else if(ch >='A' && ch <='Z'){
-		        char lc = (char)('a'+ch-'A');
-		        sb.setCharAt(i,lc);
+		StringBuilder sb= new StringBuilder(str);
+		for(int i=0;i<str.length();i++){
+		    if(str.charAt(i)>='a' && str.charAt(i)<='z'){
+		       char upc = (char)(str.charAt(i)-32);
+		       sb.setCharAt(i,upc);
+		    }else if(str.charAt(i)>='A' && str.charAt(i)<='Z'){
+		       char lc = (char)(str.charAt(i)+32);
+		       sb.setCharAt(i,lc);
 		    }
 		}
 
